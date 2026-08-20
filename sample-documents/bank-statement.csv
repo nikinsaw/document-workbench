@@ -1,0 +1,13 @@
+date,description,debit,credit,balance
+2026-06-01,Opening Balance,,,52340.00
+2026-06-02,Salary Credit - Nimbus Retail Pvt Ltd,,145000.00,197340.00
+2026-06-04,HDFC Car Loan EMI,12400.00,,184940.00
+2026-06-05,Credit Card Payment - Kotak,15000.00,,169940.00
+2026-06-08,Grocery - BigBasket,4210.00,,165730.00
+2026-06-10,Rent Payment - Landlord Transfer,28000.00,,137730.00
+2026-06-14,Electricity Bill - Adani Electricity,2340.00,,135390.00
+2026-06-18,Restaurant - Swiggy,1180.00,,134210.00
+2026-06-21,ATM Withdrawal,10000.00,,124210.00
+2026-06-25,Mobile Recharge - Jio,499.00,,123711.00
+2026-06-28,Miscellaneous Transfer Received,,6000.00,129711.00
+2026-06-30,Closing Balance,,,129711.00

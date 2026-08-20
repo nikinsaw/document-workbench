@@ -1,0 +1,35 @@
+PERSONAL LOAN APPLICATION
+Reference No: LN-2026-00417
+
+Applicant Name: Rohan A. Mehta
+Date of Birth: 1990-03-14
+Address: 14B, Sunrise Apartments, Kandivali West, Mumbai, Maharashtra 400067
+Phone: +91 98200 11234
+Email: rohan.mehta.applicant@example.com
+PAN: ABCDE1234F
+
+Employment Details:
+  Employer: Nimbus Retail Pvt Ltd
+  Designation: Regional Sales Manager
+  Monthly Gross Income: INR 145,000
+  Years at Current Employer: 4
+
+Loan Requested:
+  Amount: INR 800,000
+  Purpose: Home renovation
+  Requested Tenure: 36 months
+
+Existing Liabilities:
+  Car Loan (HDFC Bank): INR 12,400 / month, 18 months remaining
+  Credit Card outstanding: INR 34,000
+
+Declared Monthly Expenses: INR 42,000
+Declared Bank: Kotak Mahindra Bank, Account No. XXXXXX7841
+
+Applicant Declaration:
+I, Rohan A. Mehta, declare that the information provided above is true and complete to the
+best of my knowledge, and I authorize the lender to verify these details with third parties
+including credit bureaus and my employer.
+
+Signature: R. A. Mehta
+Date: 2026-07-02
