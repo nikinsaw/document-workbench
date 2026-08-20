@@ -248,3 +248,6 @@ failure, and only persisted/returned once it passes.
 - **Virus/malware scanning** on uploaded files before they're persisted anywhere durable, given
   this accepts arbitrary user file uploads.
 - **Real OCR** behind the existing `ImageExtractor`/`DocumentExtractor` seam.
+
+## Screenshot
+<img width="1920" height="1080" alt="Screenshot 2026-08-20 213300" src="https://github.com/user-attachments/assets/c21e8cda-2b47-4000-93a4-c10c09463d6c" />
