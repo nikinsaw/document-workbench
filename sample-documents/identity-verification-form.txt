@@ -1,0 +1,24 @@
+IDENTITY VERIFICATION FORM
+Reference No: KYC-2026-00417
+
+Full Name: Rohan Ashok Mehta
+Also Known As: Rohan A. Mehta
+Date of Birth: 1990-03-14
+Registered Address: Flat 14B, Sunrise Apartments, Kandivali West, Mumbai, Maharashtra 400067
+Correspondence Address: 22, Lake View Society, Andheri East, Mumbai, Maharashtra 400069
+Phone (Primary): +91 98200 11234
+PAN: ABCDE1234F
+Aadhaar (last 4 digits): XXXX XXXX 7702
+
+Employer on File: Nimbus Retail Private Limited
+Employer Address: Unit 5, Corporate Plaza, Andheri East, Mumbai, Maharashtra 400069
+
+Verification Notes:
+- Applicant's proof-of-address document lists the correspondence address (Andheri East) rather
+  than the registered address (Kandivali West) captured on the loan application form.
+- Name on PAN card reads "Rohan Ashok Mehta"; name on the loan application form reads
+  "Rohan A. Mehta". Middle name is abbreviated on the loan form.
+- No other discrepancies noted during document review.
+
+Reviewed by: KYC Desk, Branch Code 0417
+Review Date: 2026-07-03
