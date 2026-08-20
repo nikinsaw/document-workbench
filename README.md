@@ -19,14 +19,77 @@ npm install
 npm run dev                # http://localhost:5173
 ```
 
-Without `ANTHROPIC_API_KEY` set, the backend automatically falls back to a deterministic
-`MockLlmClient` so the whole upload → extract → analyze → trace flow can be exercised end to
-end offline (this is also what the automated tests run against). Sample documents for a quick
-manual test live in `sample-documents/` — the loan application and the identity-verification
-form contain an intentional name/address mismatch, and the bank statement CSV corroborates
-the loan application's declared income/employer.
+Without `ANTHROPIC_API_KEY` set, the backend automatically falls back to a deterministic,
+**content-aware** `MockLlmClient` so the whole upload → extract → analyze → trace flow can be
+exercised end to end offline (this is also what the automated tests run against). It recognizes
+the document shapes used in `sample-documents/` — loan application / identity verification /
+bank statement, and purchase order / vendor invoice — and returns findings that actually reflect
+what's in the text, including cross-document discrepancy detection. Anything else it doesn't
+recognize still gets a valid, schema-conformant placeholder finding, so arbitrary uploads never
+break.
 
 Run backend tests: `cd backend && npm test`.
+
+## Sample documents
+
+`sample-documents/` has two independent scenarios, each demonstrating a different mock outcome:
+
+| Files | Scenario | Mock result |
+|---|---|---|
+| `loan-application.txt`, `identity-verification-form.txt`, `bank-statement.csv` | Applicant's name is abbreviated on the loan form ("Rohan A. Mehta") vs spelled out on the KYC form ("Rohan Ashok Mehta"); declared income/employer are corroborated by the bank statement | 1 `discrepancy` finding (name mismatch) + 2 `comparison` findings (employer & income corroborated) |
+| `loan-application-clean.txt`, `identity-verification-clean.txt`, `bank-statement-clean.csv` | Same three-document shape, but every field agrees across all three documents | 0 `discrepancy` findings — only `comparison` findings confirming consistency |
+| `purchase-order.txt`, `vendor-invoice.txt` | The vendor invoiced 10 units of a line item the PO ordered 12 of, so the totals don't reconcile (`INR 250,632` ordered vs `INR 245,676` billed) | 1 `discrepancy` finding citing both totals and the differing line item |
+
+Upload any of these sets (or mix documents across scenarios, or upload something unrelated) and
+run analysis to see the mock respond accordingly — recognized documents get targeted, schema-valid
+findings; anything unrecognized falls back to a generic placeholder finding.
+
+### Worked example
+
+Upload the first (mismatched) scenario's three files, select all three, and run this prompt:
+
+> Check whether the applicant details are consistent and whether the declared income is
+> corroborated by the bank statement.
+
+The mock returns (abridged — full response also includes a `perDocument` entry per file):
+
+```json
+{
+  "synthesis": {
+    "summary": "Cross-document synthesis across 3 documents found at least one discrepancy worth reviewing — see findings below.",
+    "findings": [
+      {
+        "category": "discrepancy",
+        "title": "Applicant name mismatch between loan application and identity verification",
+        "extractedFacts": [
+          "Loan application name: \"Rohan A. Mehta\"",
+          "Identity verification name: \"Rohan Ashok Mehta\""
+        ],
+        "aiInterpretation": "The name on file differs between the loan application and the identity verification record. This may be a benign abbreviation, but should be confirmed with the applicant before proceeding.",
+        "confidence": "medium"
+      },
+      {
+        "category": "comparison",
+        "title": "Salary credit corroborates declared employer",
+        "confidence": "high"
+      },
+      {
+        "category": "comparison",
+        "title": "Salary credit amount matches declared income",
+        "confidence": "high"
+      }
+    ]
+  }
+}
+```
+
+Re-run the same prompt against the `-clean` scenario's three files and every synthesis finding
+comes back `category: "comparison"` — no `discrepancy` — since all the fields agree. Swap in
+`purchase-order.txt` + `vendor-invoice.txt` instead and you'll get a single `discrepancy` finding
+citing both totals (`INR 250,632` vs `INR 245,676`) and the mismatched line item.
+
+See `backend/src/services/mockAnalysis.ts` for the detection logic and
+`backend/tests/mockAnalysis.test.ts` for tests covering all three scenarios above.
 
 ## Architecture overview
 
@@ -42,13 +105,14 @@ backend/
     services/
       LlmClient.ts              — provider-agnostic interface
       AnthropicLlmClient.ts     — real implementation (Anthropic SDK)
-      MockLlmClient.ts          — deterministic offline implementation
+      MockLlmClient.ts          — deterministic offline implementation (parses [DOCUMENT] blocks)
+      mockAnalysis.ts           — content-aware detectors the mock uses to build realistic findings
       promptBuilder.ts          — builds the system prompt + per-document-tagged user prompt
       AnalysisService.ts        — orchestrates LLM call → schema validation → retry → persistence shape
       DocumentPipeline.ts       — orchestrates extraction → DB persistence per uploaded file
     routes/                — documents.ts, analysis.ts (thin — delegate to services)
     app.ts / server.ts
-  tests/                  — extractor unit tests + analysis API contract test
+  tests/                  — extractor unit tests, mock-analysis unit tests, analysis API contract test
 frontend/
   src/
     api/client.ts          — typed fetch wrapper
@@ -116,9 +180,11 @@ failure, and only persisted/returned once it passes.
   with character counter, a results view separating synthesis from per-document findings, a
   clickable source-document tag on every finding that opens the original extracted excerpt,
   and copy-to-clipboard for the full result set.
-- Automated tests: extractor unit tests (CSV/TXT, including corrupt/empty-input handling) and
-  an API contract test that uploads a document, runs it through `/api/analysis` against the
-  mock LLM, and asserts every returned finding's provenance is valid.
+- Automated tests: extractor unit tests (CSV/TXT, including corrupt/empty-input handling), mock
+  analysis unit tests covering the generic fallback plus all three `sample-documents/` scenarios
+  (mismatch detection, clean/no-discrepancy case, PO/invoice total mismatch), and an API contract
+  test that uploads a document, runs it through `/api/analysis` against the mock LLM, and asserts
+  every returned finding's provenance is valid.
 
 ## Known limitations
 
