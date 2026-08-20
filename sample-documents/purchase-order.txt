@@ -1,0 +1,18 @@
+PURCHASE ORDER
+PO Number: PO-2026-3391
+Date: 2026-07-10
+Vendor: BrightPath Office Supplies
+
+Bill To: Meridian Consulting LLP, 4th Floor, Tower B, Cyber Hub, Gurugram, Haryana 122002
+
+Line Items:
+  1. Ergonomic Office Chair - Qty: 12 - Unit Price: INR 8,500 - Line Total: INR 102,000
+  2. Standing Desk - Qty: 6 - Unit Price: INR 14,200 - Line Total: INR 85,200
+  3. Monitor Arm (Dual) - Qty: 12 - Unit Price: INR 2,100 - Line Total: INR 25,200
+
+Subtotal: INR 212,400
+Tax (18% GST): INR 38,232
+Total: INR 250,632
+
+Payment Terms: Net 30
+Authorized By: Ananya Iyer, Procurement Manager

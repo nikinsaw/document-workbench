@@ -1,0 +1,34 @@
+PERSONAL LOAN APPLICATION
+Reference No: LN-2026-00892
+
+Applicant Name: Priya Suresh Nair
+Date of Birth: 1988-11-22
+Address: 7C, Palm Grove Residency, Baner, Pune, Maharashtra 411045
+Phone: +91 98221 55678
+Email: priya.nair.applicant@example.com
+PAN: BXKPN5678R
+
+Employment Details:
+  Employer: Solstice Analytics Pvt Ltd
+  Designation: Senior Data Analyst
+  Monthly Gross Income: INR 118,000
+  Years at Current Employer: 3
+
+Loan Requested:
+  Amount: INR 500,000
+  Purpose: Wedding expenses
+  Requested Tenure: 24 months
+
+Existing Liabilities:
+  None declared
+
+Declared Monthly Expenses: INR 30,000
+Declared Bank: Axis Bank, Account No. XXXXXX2290
+
+Applicant Declaration:
+I, Priya Suresh Nair, declare that the information provided above is true and complete to the
+best of my knowledge, and I authorize the lender to verify these details with third parties
+including credit bureaus and my employer.
+
+Signature: Priya S. Nair
+Date: 2026-07-15

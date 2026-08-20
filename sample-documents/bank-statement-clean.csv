@@ -1,0 +1,11 @@
+date,description,debit,credit,balance
+2026-06-01,Opening Balance,,,68500.00
+2026-06-03,Salary Credit - Solstice Analytics Pvt Ltd,,118000.00,186500.00
+2026-06-06,Rent Payment - Landlord Transfer,18000.00,,168500.00
+2026-06-09,Grocery - DMart,3120.00,,165380.00
+2026-06-12,Electricity Bill - MSEDCL,1890.00,,163490.00
+2026-06-16,Restaurant - Zomato,940.00,,162550.00
+2026-06-19,Mobile Recharge - Airtel,599.00,,161951.00
+2026-06-23,Mutual Fund SIP - Axis Bluechip,10000.00,,151951.00
+2026-06-27,ATM Withdrawal,5000.00,,146951.00
+2026-06-30,Closing Balance,,,146951.00

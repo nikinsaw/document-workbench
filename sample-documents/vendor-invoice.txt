@@ -1,0 +1,18 @@
+VENDOR INVOICE
+Invoice Number: INV-88213
+PO Reference: PO-2026-3391
+Date: 2026-07-24
+From: BrightPath Office Supplies, GSTIN 07AAAPB1234C1Z5
+
+Bill To: Meridian Consulting LLP
+
+Line Items:
+  1. Ergonomic Office Chair - Qty: 12 - Unit Price: INR 8,500 - Line Total: INR 102,000
+  2. Standing Desk - Qty: 6 - Unit Price: INR 14,200 - Line Total: INR 85,200
+  3. Monitor Arm (Dual) - Qty: 10 - Unit Price: INR 2,100 - Line Total: INR 21,000
+
+Subtotal: INR 208,200
+Tax (18% GST): INR 37,476
+Total: INR 245,676
+
+Payment Terms: Net 30
