@@ -15,16 +15,22 @@ process.env.ANTHROPIC_API_KEY = "";
 
 // Dynamic imports so the env vars above are set before config.ts evaluates.
 let createApp: typeof import("../src/app").createApp;
+let closeDb: typeof import("../src/db/db").closeDb;
 
 let app: import("express").Express;
 
 beforeAll(async () => {
   ({ createApp } = await import("../src/app"));
+  ({ closeDb } = await import("../src/db/db"));
   app = createApp();
 });
 
 afterAll(() => {
-  fs.rmSync(tmpRoot, { recursive: true, force: true });
+  // Release the DB file handle first — on Windows, better-sqlite3 holds an
+  // exclusive lock until closed, which otherwise turns the temp-dir cleanup
+  // below into an intermittent EPERM.
+  closeDb();
+  fs.rmSync(tmpRoot, { recursive: true, force: true, maxRetries: 5, retryDelay: 100 });
 });
 
 describe("Analysis API contract", () => {
